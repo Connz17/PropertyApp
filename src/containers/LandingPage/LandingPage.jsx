@@ -1,3 +1,6 @@
+import Button from "../../components/Button/Button";
+import NewUserForm from "../../components/NewUserForm/NewUserForm";
+import SignInForm from "../../components/SignInForm/SignInForm";
 import "./LandingPage.scss";
 
 
@@ -11,24 +14,11 @@ const LandingPage = () => {
       <img src="" alt="" />
       <h2>Properties for you</h2>
       <div>
-        <button>Sign in</button>
-        <button>Create new user</button>
+        <Button buttonClass={"signIn"} buttonTitle={"Sign In"}/>
+        <Button buttonClass={"newUser"} buttonTitle={"Create new user"}/>
       </div>
-      {<form onSubmit={handleSignIn}>
-        <label>Username</label>
-          <input required type="text" />
-        <label>Password</label>
-          <input required type="password"/>
-      </form>}
-      {<form onSubmit={handleNewUser}>
-      <label>Email</label>
-          <input required type="email" name="" id="" />
-      <label>Username</label>
-          <input required type="text" />
-        <label>Password</label>
-          <input required type="password"/>
-      </form>}
-      
+      {<SignInForm onSubmit={handleSignIn}/>}
+      {<NewUserForm onSubmit={handleNewUser}/>}
     </div>
   )
 }

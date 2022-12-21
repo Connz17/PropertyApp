@@ -3,7 +3,7 @@ import "./UserInfo.scss";
 
 const UserInfo = () => {
   return (
-    <div>UserInfo</div>
+    <div >UserInfo</div>
   )
 }
 
