@@ -3,7 +3,9 @@ import "./SearchBox.scss";
 
 const SearchBox = () => {
   return (
-    <div>SearchBox</div>
+    <div>
+        <input className="search" type="text" placeholder="search..."/>
+    </div>
   )
 }
 
