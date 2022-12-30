@@ -9,6 +9,17 @@ const LandingPage = () => {
 //sign in
 //create new user
 
+
+const handleSignIn = () => {
+    console.log("signIn");
+}
+
+const handleNewUser = () => {
+    console.log("new user");
+
+}
+
+
   return (
     <div>
       <img src="" alt="" />

@@ -9,7 +9,7 @@ const Nav = () => {
 
 
   return (
-    <div>Nav</div>
+    <div className="aside">Nav</div>
   )
 }
 

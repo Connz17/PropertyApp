@@ -5,17 +5,18 @@
     border-radius: 15px;
     text-indent: 1rem;
     transition: .5s;
+    border: 2px solid gold;
 
     &:hover{
         background-color: rgb(218, 216, 216);
-        border: 2px solid red;
+        border: 2px solid lightgreen;
     }
 
 
     &:focus{
         width: 10rem;
         background-color: lightgreen;
-        border: 2px solid rgb(220, 204, 21);
+        //border: 3px solid purple;
     }
 
 }

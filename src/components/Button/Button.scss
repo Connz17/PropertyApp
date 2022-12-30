@@ -1,0 +1,24 @@
+button{
+    cursor: pointer;
+    width: 6rem;
+    height: 2.5rem;
+    border-radius: 15px;
+    
+    background-color: cornflowerblue;
+    transition: 0.5s;
+
+    &:hover{
+        background-color: lightgreen;
+        border: 2px solid gold;
+        box-shadow: 3px 3px 10px;
+    }
+}
+
+
+.signIn{
+    
+}
+
+.newUser{
+
+}
