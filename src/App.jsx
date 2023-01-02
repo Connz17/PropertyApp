@@ -1,4 +1,5 @@
 import './App.scss';
+import NewUserForm from './components/NewUserForm/NewUserForm';
 import SearchBox from './components/SearchBox/SearchBox';
 import SignInForm from './components/SignInForm/SignInForm';
 import LandingPage from './containers/LandingPage/LandingPage';
@@ -15,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      <SignInForm/>
+      <LandingPage/>
     </div>
   );
 }

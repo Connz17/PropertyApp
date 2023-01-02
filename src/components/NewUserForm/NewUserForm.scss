@@ -1,0 +1,47 @@
+.registerForm{
+
+    &__label{
+
+    }
+
+
+    &__input{
+        margin-bottom: 0.5rem;
+        height: 1.5rem;
+        width: 6rem;
+        border: 1px solid black;
+        border-radius: 3px;
+        text-indent: 0.5rem;
+
+        &:hover{
+            border: 2px solid black;
+            background-color: lightgray;
+
+        }
+
+        &:focus{
+            background-color:aliceblue;
+            
+
+        }
+
+    }
+
+    &__submit{
+        cursor: pointer;
+        margin-top: 0.3rem;
+        width: 4.3rem;
+        height: 2rem;
+        border-radius: 10px;
+        
+        background-color: lightgray;
+        transition: 0.5s;
+
+    &:hover{
+        background-color: aliceblue;
+        border: 2px solid lightgreen;
+        box-shadow: 3px 3px 10px;
+        }
+
+    }
+}
