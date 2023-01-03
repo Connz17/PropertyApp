@@ -54,7 +54,7 @@ const toggleRegistrationForm = () => {
       <><h3>Welcome Back!</h3><br />
       <SignInForm onSubmit={handleSignIn}/></>}
       {showRegistration && 
-      <><h3>Hello there</h3><br />
+      <><h3>Join us!</h3><br />
       <NewUserForm onSubmit={handleNewUser}/></>}
     </div>    
     </>
