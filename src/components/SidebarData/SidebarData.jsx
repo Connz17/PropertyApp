@@ -7,34 +7,28 @@ import * as RiIcons from 'react-icons/ri'
 
 export const SidebarData = [
     {
-        title: "Homepage",
-        path: "/homepage",
+        title: "Home",
+        path: "/home",
         icon: <AiIcons.AiFillHome/>,
+        class: "nav-text",
     },
     {
         title: "Upload",
-        path: "/Upload",
-        icon: <AiIcons.AiFillHome/>,
+        path: "/upload",
+        icon: <RiIcons.RiContactsBookUploadFill/>,
+        class: "nav-text",
+    },
+    {
+        title: "User Profile",
+        path: "/profile",
+        icon: <FaIcons.FaUserEdit/>,
+        class: "nav-text",
+    },
+    {
+        title: "Settings",
+        path: "/settings",
+        icon: <IoIcons.IoMdSettings/>,
+        class: "nav-text",
     },
 ]
 
-
-
-
-
-
-
-
-
-
-
-// import "./SidebarData.scss";
-
-
-// const SidebarData = () => {
-//   return (
-//     <div>SidebarData</div>
-//   )
-// }
-
-// export default SidebarData

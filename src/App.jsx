@@ -1,4 +1,5 @@
 import './App.scss';
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import NewUserForm from './components/NewUserForm/NewUserForm';
 import RatingDropdown from './components/RatingDropdown/RatingDropdown';
 import SearchBox from './components/SearchBox/SearchBox';
@@ -29,9 +30,31 @@ function App() {
   ];
 
   return (
-    <div className="App">
-      <RatingDropdown onChange={(value) => console.log(value)} placeHolder="Select..." options={options}/>
-    </div>
+    <Router>
+      <div className="App">
+        <Nav/>
+        <Routes>
+          <Route>
+            {/* <RatingDropdown onChange={(value) => console.log(value)} placeHolder="Select..." options={options}/> */}
+          </Route>
+          <Route path='#' 
+            element={"#"}>
+          </Route>
+          <Route path='#' 
+            element={"#"}>
+          </Route>
+          <Route path='#' 
+            element={"#"}>
+          </Route>
+          <Route path='#' 
+            element={"#"}>
+          </Route>
+          <Route path='#' 
+            element={"#"}>
+          </Route>
+        </Routes>      
+      </div>
+    </Router>
   );
 }
 
