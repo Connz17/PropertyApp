@@ -1,6 +1,6 @@
 import './App.scss';
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import NewUserForm from './components/NewUserForm/NewUserForm';
+import HomePage from './containers/HomePage/HomePage';
 import SearchBox from './components/SearchBox/SearchBox';
 import SignInForm from './components/SignInForm/SignInForm';
 import LandingPage from './containers/LandingPage/LandingPage';
@@ -18,13 +18,15 @@ function App() {
 
 
 
+
+
   return (
     <Router>
       <div className="App">
         <Nav/>
         <Routes>
-          <Route>
-            
+          <Route path='/home'
+            element={<HomePage/>}>
           </Route>
           <Route path='#' 
             element={"#"}>
@@ -38,8 +40,8 @@ function App() {
           <Route path='#' 
             element={"#"}>
           </Route>
-          <Route path='#' 
-            element={"#"}>
+          <Route path='/' 
+            element={<LandingPage/>}>
           </Route>
         </Routes>      
       </div>

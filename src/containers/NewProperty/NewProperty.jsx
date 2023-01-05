@@ -22,7 +22,18 @@ const NewProperty = () => {
 
   return (
     <div>
-      <input type="file" accept="image/*" name="" id="" />
+      <label htmlFor="">Address</label>
+      <input type="text" name="" id="" />
+      <label htmlFor="file-select">Upload a picture</label>
+      <input type="file" accept="image/*" name="file-select" id="" onChange={"#"}/>
+      <div className="property__preview">
+        <img src="#" alt="preview" />
+      </div>
+      <label htmlFor="image-description">Enter image description. e.g. <em>'Front room'</em></label>
+      <input type="text" name="image-description" id="" />
+      <label htmlFor="">Price</label>
+      <input type="number" name="" id="" /> <br />
+      <label htmlFor="">Property rating</label>
       <RatingDropdown onChange={(value) => console.log(value)} placeHolder="Select..." options={options}/>
     </div>
   )
