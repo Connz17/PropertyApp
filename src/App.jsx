@@ -16,7 +16,23 @@ function App() {
   //   image:""
   // });
 
-
+  const properties = [{
+    address: "",
+    images: {
+      "main room": "",
+      "dining room": "",
+      kitchen: "",
+      bathroom: "",
+      garden: "",
+      bedrooms: {
+        "master bedroom": "",
+        "second bedroom": "",
+        "third bedroom": ""
+      }
+    },
+    price: 0,
+    rating: 0,
+  }]
 
 
 
@@ -26,13 +42,13 @@ function App() {
         <Nav/>
         <Routes>
           <Route path='/home'
-            element={<HomePage/>}>
+            element={<HomePage properties={properties}/>}>
           </Route>
           <Route path='#' 
             element={"#"}>
           </Route>
           <Route path='/upload' 
-            element={<NewProperty/>}>
+            element={<NewProperty properties={properties}/>}>
           </Route>
           <Route path='#' 
             element={"#"}>
