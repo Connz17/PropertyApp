@@ -1,10 +1,16 @@
 import "./NewProperty.scss";
 import RatingDropdown from '../../components/RatingDropdown/RatingDropdown';
 import { useState } from "react";
+import ImageTitleDropdown from "../../components/ImageTitleDropdown/ImageTitleDropdown";
 
 
     //a page where a new property location can be added
     // a form that gathers all the necessary  information and sends it to firebase
+
+
+       // delete Object.assign(o, {[newKey]: o[oldKey] })[oldKey];
+    // delete Object.assign(altProperty, {[tag]: altProperty.address}).address;
+
 
 const NewProperty = ({}) => {
   const [property, setProperty] = useState({
@@ -18,7 +24,8 @@ const NewProperty = ({}) => {
       bedrooms: {
         "master bedroom": null,
         "second bedroom": null,
-        "third bedroom": null
+        "third bedroom": null,
+        "fourth bedroom": null
       }
     },
     price: 0,
@@ -40,8 +47,29 @@ const NewProperty = ({}) => {
     {value: 10, label: "10"}
   ];
 
-  const fileSelect = (e) =>{
+  const locations = [
+    {value: "main room", label: "Main Room"},
+    {value: "dining room", label: "Dining Room"},
+    {value: kitchen, label: "Kitchen"},
+    {value: bathroom, label: "Bathroom"},
+    {value: garden, label: "Garden"},
+  ]
 
+  const bedroomLocations = [
+    {value: "master bedroom", label: "Master"},
+    {value: "second bedroom", label: "Second"},
+    {value: "third bedroom", label: "Third"},
+    {value: "fourth bedroom", label: "Fourth"},
+  ]
+
+
+  const tagline = (e) => {
+  setProperty({...property, description: e.target.value})
+  }
+
+
+  
+  const imageSelect = (e) =>{
     const newProperty = {...property}; 
     newProperty.images.kitchen = URL.createObjectURL(e.target.files[0])
     setProperty(newProperty)
@@ -49,6 +77,12 @@ const NewProperty = ({}) => {
 console.log(property.images);
 
   console.log(property);
+
+  const bedroomSelect = (e) =>{
+    const newProperty = {...property}; 
+    newProperty.images.bedrooms = URL.createObjectURL(e.target.files[0])
+    setProperty(newProperty)
+  }
 
   // fileReader.onchange =  (e) => {
   //   const {result} = e.target;
@@ -70,13 +104,15 @@ console.log(property.images);
       </div><br />
 
       <label htmlFor="file-select">Upload property pictures</label>
+      <ImageTitleDropdown placeHolder="Location..."/>
       <div> 
-        <input type="file" accept="image/*" name="file-select" id="" onChange={fileSelect}/>
+        <input type="file" accept="image/*" name="file-select" id="" onChange={imageSelect}/>
+        <input type="file" accept="image/*" name="file-select" id="" onChange={bedroomSelect}/>
         <div className="property__preview">
           <img src={property.images.kitchen} alt="preview" />
         </div>        
         <label htmlFor="image-description">Enter image description. e.g. <em>'Front room'</em></label>
-        <input type="text" name="image-description" id="" />
+        <input type="text" name="image-description" id="" onChange={tagline}/>
       </div>
     </div>
   )
