@@ -50,9 +50,9 @@ const NewProperty = ({}) => {
   const locations = [
     {value: "main room", label: "Main Room"},
     {value: "dining room", label: "Dining Room"},
-    {value: kitchen, label: "Kitchen"},
-    {value: bathroom, label: "Bathroom"},
-    {value: garden, label: "Garden"},
+    {value: "kitchen", label: "Kitchen"},
+    {value: "bathroom", label: "Bathroom"},
+    {value: "garden", label: "Garden"},
   ]
 
   const bedroomLocations = [
@@ -71,7 +71,7 @@ const NewProperty = ({}) => {
   
   const imageSelect = (e) =>{
     const newProperty = {...property}; 
-    newProperty.images.kitchen = URL.createObjectURL(e.target.files[0])
+    newProperty.images["dining room"] = URL.createObjectURL(e.target.files[0])
     setProperty(newProperty)
   }
 console.log(property.images);
