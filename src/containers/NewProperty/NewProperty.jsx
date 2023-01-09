@@ -2,6 +2,8 @@ import "./NewProperty.scss";
 import RatingDropdown from '../../components/RatingDropdown/RatingDropdown';
 import { useState } from "react";
 import ImageTitleDropdown from "../../components/ImageTitleDropdown/ImageTitleDropdown";
+import ImageUpload from "../../components/ImageUpload/ImageUpload";
+import Button from "../../components/Button/Button";
 
 
     //a page where a new property location can be added
@@ -13,12 +15,14 @@ import ImageTitleDropdown from "../../components/ImageTitleDropdown/ImageTitleDr
 
 
 const NewProperty = ({}) => {
-  const [property, setProperty] = useState({
+  const [showImageUpload, setShowImageUpload] = useState(false);
+  const [property, setProperty] = useState(
+    {
     address: "",
     images: {
       "main room": null,
       "dining room": null,
-      kitchen: null,
+      "kitchen": null,
       bathroom: null,
       garden: null,
       bedrooms: {
@@ -32,7 +36,6 @@ const NewProperty = ({}) => {
     rating: 0,
   })
 
-  const fileReader = new FileReader();
 
   const options = [
     {value: 1, label: "1"},
@@ -47,73 +50,46 @@ const NewProperty = ({}) => {
     {value: 10, label: "10"}
   ];
 
-  const locations = [
-    {value: "main room", label: "Main Room"},
-    {value: "dining room", label: "Dining Room"},
-    {value: "kitchen", label: "Kitchen"},
-    {value: "bathroom", label: "Bathroom"},
-    {value: "garden", label: "Garden"},
-  ]
-
-  const bedroomLocations = [
-    {value: "master bedroom", label: "Master"},
-    {value: "second bedroom", label: "Second"},
-    {value: "third bedroom", label: "Third"},
-    {value: "fourth bedroom", label: "Fourth"},
-  ]
-
 
   const tagline = (e) => {
   setProperty({...property, description: e.target.value})
   }
 
+  const address = (e) => {
+    setProperty({...property, address: e.target.value})
+    }
 
+  const cost = (e) => {
+    setProperty({...property, price: e.target.value})
+    }
   
-  const imageSelect = (e) =>{
-    const newProperty = {...property}; 
-    newProperty.images["dining room"] = URL.createObjectURL(e.target.files[0])
-    setProperty(newProperty)
+  const toggleUploadScreen = () => {
+    setShowImageUpload(!showImageUpload)
   }
-console.log(property.images);
 
   console.log(property);
+  
 
-  const bedroomSelect = (e) =>{
-    const newProperty = {...property}; 
-    newProperty.images.bedrooms = URL.createObjectURL(e.target.files[0])
-    setProperty(newProperty)
-  }
 
-  // fileReader.onchange =  (e) => {
-  //   const {result} = e.target;
-  // }
-
-  // fileReader.readAsDataURL(fileObject)
 
   return (
     <div>
-      <div className="property__info"> 
-        <label htmlFor="">Address</label>
-        <input type="text" name="" id="" />
+      <h2 className="heading">Upload a property</h2>
+      <h4 className="heading">Please enter the properties information.</h4>
+      <div className="upload__info"> 
+        <label className="upload__label" >Address:</label><br/>
+        <input className="upload__input" type="text" id="" placeholder="38 Kingsway London SW92 7MQ" onChange={address}/> <br/>
 
-        <label htmlFor="">Price</label>
-        <input type="number" name="" id="" /> <br />
+        <label className="upload__label">Price:</label><br/>
+        <input className="upload__input--digit" type="number" id="" placeholder="450000" onChange={cost}/> <br />
 
-        <label htmlFor="">Property rating</label>
-        <RatingDropdown onChange={(value) => console.log(value)} placeHolder="Select..." options={options}/>
+        <label className="upload__label">Property rating:</label>
+        <RatingDropdown onChange={(value) => setProperty({...property, rating: value})  } placeHolder="Select..." options={options}/>
       </div><br />
-
-      <label htmlFor="file-select">Upload property pictures</label>
-      <ImageTitleDropdown placeHolder="Location..."/>
-      <div> 
-        <input type="file" accept="image/*" name="file-select" id="" onChange={imageSelect}/>
-        <input type="file" accept="image/*" name="file-select" id="" onChange={bedroomSelect}/>
-        <div className="property__preview">
-          <img src={property.images.kitchen} alt="preview" />
-        </div>        
-        <label htmlFor="image-description">Enter image description. e.g. <em>'Front room'</em></label>
-        <input type="text" name="image-description" id="" onChange={tagline}/>
-      </div>
+      <Button buttonTitle={"Upload pictures"} handleClick={toggleUploadScreen}/>
+      {showImageUpload && <ImageUpload property={property} setProperty={setProperty}/> }
+      <label className="upload__label">Enter property description...</label><br/>
+      <textarea className="upload__input--long" name="" id="" spellCheck="true" onChange={tagline}></textarea>
     </div>
   )
 }

@@ -1,26 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import "./RatingDropdown.scss";
+import * as IoIcons from 'react-icons/io'
 
-
-const Icon = () => {
-  return (
-    <svg height="20" width="20" viewBox="0 0 20 20">
-      <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-    </svg>
-  );
-};
 
 
 const RatingDropdown = ({placeHolder, options, onChange}) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
-  // const inputRef = useRef();
+  const inputRef = useRef();
 
   useEffect(() => {
-    const handler = (e) => {setShowMenu(false);
-      // if (inputRef.current && !inputRef.current.contains(e.target)){
-      //   setShowMenu(false);
-      // }
+    const handler = (e) => {
+      if (inputRef.current && !inputRef.current.contains(e.target)){
+        setShowMenu(false);
+      }
     };
 
   window.addEventListener("click", handler);
@@ -30,7 +23,7 @@ const RatingDropdown = ({placeHolder, options, onChange}) => {
   })
 
   const handleInputClick = (e) => {
-    e.stopPropagation();
+    //e.stopPropagation();
     setShowMenu(!showMenu);
   }
 
@@ -43,7 +36,7 @@ const RatingDropdown = ({placeHolder, options, onChange}) => {
 
   const onItemClick = (option) => {
     setSelectedValue(option);
-    onChange(option);
+    onChange(option.value);
   };
 
   const isSelected = (option) => {
@@ -58,11 +51,11 @@ const RatingDropdown = ({placeHolder, options, onChange}) => {
 
   return (
     <div className="dropdown-container">
-      <div onClick={handleInputClick} className="dropdown-input">
+      <div ref={inputRef} onClick={handleInputClick} className="dropdown-input">
         <div className="dropdown-selected-value">{getDisplay()}</div>
         <div className="dropdown-tools">
           <div className="dropdown-tool">
-            <Icon />
+          <IoIcons.IoIosArrowDropdownCircle/>
           </div>
         </div>
       </div>

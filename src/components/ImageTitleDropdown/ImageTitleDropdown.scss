@@ -1,5 +1,5 @@
-.dropdown-container {
-    width: 7rem;
+.location-container {
+    width: 10rem;
     text-align: left;
     border: 1px solid #ccc;
     position: relative;
@@ -7,7 +7,7 @@
     cursor: pointer;
   }
   
-.dropdown-input {
+.location-input {
     padding: 5px;
     display: flex;
     align-items: center;
@@ -15,7 +15,7 @@
     user-select: none;
   }
 
-.dropdown-menu {
+.location-menu {
     position: absolute;
     transform: translateY(1px);
     width: 100%;
@@ -26,7 +26,7 @@
     background-color: #fff;
   }
 
-.dropdown-item{
+.location-item{
     padding: 5px;
     text-align: center;
     cursor: pointer;
@@ -37,7 +37,7 @@
 
 }
 
-.dropdown-item.selected {
+.location-item.selected {
     background-color: #0d6efd;
     color: #fff;
 }

@@ -1,0 +1,66 @@
+.heading{
+    text-align: center;
+}
+
+
+.upload__info{
+    
+}
+
+.upload__label{
+
+}
+
+.upload__input{
+    border-radius: 3px;
+    border: solid 1px blue;
+    margin-bottom: 1rem;
+    width: 17rem;
+    text-indent: 0.3rem;
+
+    &::placeholder{
+        font-style: italic;
+    }
+
+    &:focus{
+        border: solid 2px;
+        width: fit-content;
+        height: 3rem;
+    }
+
+    &--digit{
+    border-radius: 3px;
+    border: solid 1px blue;
+    margin-bottom: 1rem;
+    width: 7rem;
+    text-indent: 0.3rem;
+
+    &::placeholder{
+        font-style: italic;
+    }
+
+    &:focus{
+        border: solid 2px;
+        width: fit-content;
+        height: 2rem;
+    }
+    
+    }
+
+    &--long{
+    border-radius: 3px;
+    border: solid 1px blue;
+    margin-bottom: 1rem;
+    width: 15rem;
+    height: 5rem;
+    text-indent: 0.3rem;
+
+    &:focus{
+        border: solid 2px;
+        width: 20rem;
+        height: 7rem;
+    }
+
+    }
+    
+}
