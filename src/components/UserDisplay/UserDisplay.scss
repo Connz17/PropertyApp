@@ -1,0 +1,15 @@
+.user-info{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 2rem;
+    background-color:darkcyan;
+    border-radius: 35px;
+    padding: 0.1rem 0.7rem;
+
+
+    &__pic{
+        width: 3.5rem;
+        height: auto;
+    }
+}

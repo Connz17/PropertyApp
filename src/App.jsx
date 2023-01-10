@@ -1,20 +1,22 @@
 import './App.scss';
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import HomePage from './containers/HomePage/HomePage';
 import SearchBox from './components/SearchBox/SearchBox';
 import SignInForm from './components/SignInForm/SignInForm';
 import LandingPage from './containers/LandingPage/LandingPage';
 import Nav from './containers/Nav/Nav';
 import NewProperty from './containers/NewProperty/NewProperty';
+import pic from "./images/logo.svg";
 
 function App() {
 
-  // const [user, setUser] = useState({
-  //   userName: "",
-  //   email: "",
-  //   password: "",
-  //   image:""
-  // });
+  const [user, setUser] = useState({
+    userName: "JoeTheMan",
+    email: "",
+    password: "",
+    image: pic
+  });
 
   const properties = [{
     address: "",
@@ -39,7 +41,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Nav/>
+        <Nav user={user}/>
         <Routes>
           <Route path='/home'
             element={<HomePage properties={properties}/>}>
