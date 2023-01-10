@@ -75,7 +75,7 @@ const NewProperty = ({}) => {
   return (
     <div>
       <h2 className="heading">Upload a property</h2>
-      <h4 className="heading">Please enter the properties information.</h4>
+      <h4 className="heading">Please enter the properties information.</h4><br />
       <div className="upload__info"> 
         <label className="upload__label" >Address:</label><br/>
         <input className="upload__input" type="text" id="" placeholder="38 Kingsway London SW92 7MQ" onChange={address}/> <br/>
@@ -86,8 +86,8 @@ const NewProperty = ({}) => {
         <label className="upload__label">Property rating:</label>
         <RatingDropdown onChange={(value) => setProperty({...property, rating: value})  } placeHolder="Select..." options={options}/>
       </div><br />
-      <Button buttonTitle={"Upload pictures"} handleClick={toggleUploadScreen}/>
-      {showImageUpload && <ImageUpload property={property} setProperty={setProperty}/> }
+      <Button buttonTitle={"Upload pictures"} handleClick={toggleUploadScreen}/> <br />
+      {showImageUpload && <ImageUpload property={property} setProperty={setProperty} toggleUpload={toggleUploadScreen}/> }
       <label className="upload__label">Enter property description...</label><br/>
       <textarea className="upload__input--long" name="" id="" spellCheck="true" onChange={tagline}></textarea>
     </div>
