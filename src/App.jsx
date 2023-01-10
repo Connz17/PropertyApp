@@ -8,13 +8,14 @@ import LandingPage from './containers/LandingPage/LandingPage';
 import Nav from './containers/Nav/Nav';
 import NewProperty from './containers/NewProperty/NewProperty';
 import pic from "./images/logo.svg";
+import UserProfile from './containers/UserProfile/UserProfile';
 
 function App() {
 
   const [user, setUser] = useState({
     userName: "JoeTheMan",
-    email: "",
-    password: "",
+    email: "joe@example.com",
+    password: "Password!",
     image: pic
   });
 
@@ -52,8 +53,8 @@ function App() {
           <Route path='/upload' 
             element={<NewProperty properties={properties}/>}>
           </Route>
-          <Route path='#' 
-            element={"#"}>
+          <Route path='/profile' 
+            element={<UserProfile user={user}/>}>
           </Route>
           <Route path='#' 
             element={"#"}>
