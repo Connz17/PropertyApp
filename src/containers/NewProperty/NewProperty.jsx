@@ -2,7 +2,7 @@ import "./NewProperty.scss";
 import RatingDropdown from '../../components/RatingDropdown/RatingDropdown';
 import { useState } from "react";
 import ImageTitleDropdown from "../../components/ImageTitleDropdown/ImageTitleDropdown";
-import ImageUpload from "../../components/ImageUpload/ImageUpload";
+import UploadScreen from "../../components/UploadScreen/UploadScreen";
 import Button from "../../components/Button/Button";
 
 
@@ -14,22 +14,22 @@ import Button from "../../components/Button/Button";
     // delete Object.assign(altProperty, {[tag]: altProperty.address}).address;
 
 
-const NewProperty = ({}) => {
+const NewProperty = () => {
   const [showImageUpload, setShowImageUpload] = useState(false);
   const [property, setProperty] = useState(
     {
     address: "",
     images: {
-      "main room": null,
-      "dining room": null,
-      "kitchen": null,
+      main: null,
+      dining: null,
+      kitchen: null,
       bathroom: null,
       garden: null,
       bedrooms: {
-        "master bedroom": null,
-        "second bedroom": null,
-        "third bedroom": null,
-        "fourth bedroom": null
+        master: null,
+        second: null,
+        third: null,
+        fourth: null
       }
     },
     price: 0,
@@ -87,7 +87,7 @@ const NewProperty = ({}) => {
         <RatingDropdown onChange={(value) => setProperty({...property, rating: value})  } placeHolder="Select..." options={options}/>
       </div><br />
       <Button buttonTitle={"Upload pictures"} handleClick={toggleUploadScreen}/> <br />
-      {showImageUpload && <ImageUpload property={property} setProperty={setProperty} toggleUpload={toggleUploadScreen}/> }
+      {showImageUpload && <UploadScreen property={property} setProperty={setProperty} toggleUpload={toggleUploadScreen}/> }
       <label className="upload__label">Enter property description...</label><br/>
       <textarea className="upload__input--long" name="" id="" spellCheck="true" onChange={tagline}></textarea>
     </div>

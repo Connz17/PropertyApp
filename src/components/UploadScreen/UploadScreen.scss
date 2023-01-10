@@ -6,7 +6,10 @@
     left: 30px;
     right: 30px;
     position: fixed;
-    //transition: 1s ease-in-out;
+    
+    &__label{
+        text-align: center;
+    }
 
     &__close{
         cursor: pointer;
