@@ -54,7 +54,7 @@ function App() {
             element={<NewProperty properties={properties}/>}>
           </Route>
           <Route path='/profile' 
-            element={<UserProfile user={user}/>}>
+            element={<UserProfile user={user} setUser={setUser}/>}>
           </Route>
           <Route path='#' 
             element={"#"}>

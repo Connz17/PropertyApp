@@ -1,8 +1,52 @@
-
+.profile__info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 
 
 .profile__image{
     width: 7rem;
     height: auto;
+}
+
+.info__container{
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+    
+}
+
+.edit__icon {
+    margin-left: 1.5rem;
+    cursor: pointer;
+}
+
+.edit__container {
+    background-color: rgba(128, 128, 128, 0.753);
+    border-radius: 20px;
+    text-align: center;
+    padding: 2rem;
+}
+
+.edit__name {
+
+
+    color: black;
+
+
+   
+}
+
+.edit__name-input{
+
+
+        border: brown;
+        margin-right: 1rem;
+        text-indent: 1rem;
+    }
+
+.edit__name-button{
+
 }
