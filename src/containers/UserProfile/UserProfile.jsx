@@ -5,56 +5,75 @@ import { useState } from "react";
 
 
 const UserProfile = ({user, setUser}) => {
-  const [showEdit, setShowEdit] = useState(false);
+  const [showNameEdit, setShowNameEdit] = useState(false);
+  const [showPictureEdit, setShowPictureEdit] = useState(false);
+  const [showEmailEdit, setShowEmailEdit] = useState(false);
+  const [showPasswordEdit, setShowPasswordEdit] = useState(false);
 
   const toggleNameEdit = () => {
-    setShowEdit(!showEdit);
+    setShowNameEdit(!showNameEdit);
+  }
+  const togglePictureEdit = () => {
+    setShowPictureEdit(!showPictureEdit);
+  }
+  const toggleEmailEdit = () => {
+    setShowEmailEdit(!showEmailEdit);
+  }
+  const togglePasswordEdit = () => {
+    setShowPasswordEdit(!showPasswordEdit);
   }
 
   const handleEdit = () => {
     console.log(user);
-    setShowEdit(!showEdit);
+    setShowNameEdit(false);
+    setShowPictureEdit(false);
+    setShowEmailEdit(false);
+    setShowPasswordEdit(false);
   }
 
   
   return (
     <div className="profile__info">
-      <h2 className="profile__heading">Edit and Change you information</h2><br />
+      <h2 className="profile__heading">Edit and Change your information</h2><br />
       <div className="info__container">
         <h3 className="profile__name">Change Username</h3>
         <FaIcons.FaEdit className="edit__icon" onClick={toggleNameEdit}/>
-          
       </div>
-      { showEdit && <div className="edit__container">
+        { showNameEdit && <div className="edit__container">
             <h3 className="edit__name">Please enter a new Username</h3>
             <input className="edit__name-input" type="text" onInput={event => setUser({...user, userName: event.target.value})}/>
             <button className="edit__name-button" type="submit" onClick={handleEdit}>Save</button>
-          </div> }
+        </div> }
+
       <div className="info__container">
         <h3>Change Profile Picture</h3>
-        {/* <img className="profile__image" src={user.image} alt="" /> */}
-        <FaIcons.FaEdit className="edit__icon"/>
-        <div className="edit__container">
-            
-            </div>
+        <FaIcons.FaEdit className="edit__icon" onClick={togglePictureEdit}/>
       </div>
+          { showPictureEdit && <div className="edit__container">
+            <h3 className="edit__name">Please select a new Profile picture</h3>
+            <input className="edit__name-input" type="file" about="image/*" onInput={event => setUser({...user, image: URL.createObjectURL(event.target.files[0])})}/>
+            <button className="edit__name-button" type="submit" onClick={handleEdit}>Save</button>
+          </div>}
+
         <div className="info__container">
           <h3 className="profile__email">Change Email Address</h3>
-          {/* <h3 className="profile__email">{user.email}</h3> */}
-        <FaIcons.FaEdit className="edit__icon"/>
-        <div className="edit__container">
-            
-            </div>
+        <FaIcons.FaEdit className="edit__icon" onClick={toggleEmailEdit}/>
         </div>
+          { showEmailEdit && <div className="edit__container">
+            <h3 className="edit__name">Please enter a new Email Address</h3>
+            <input className="edit__name-input" type="email" onInput={event => setUser({...user, email: event.target.value})}/>
+            <button className="edit__name-button" type="submit" onClick={handleEdit}>Save</button>
+        </div> }
+
         <div className="info__container">
           <h3 className="profile__password">Change Password</h3>
-          {/* <h3 className="profile__password">{user.password}</h3> */}
-        <FaIcons.FaEdit className="edit__icon"/>
-        <div className="edit__container">
-            
-            </div>
+        <FaIcons.FaEdit className="edit__icon" onClick={togglePasswordEdit}/>
         </div>
-        
+          { showPasswordEdit && <div className="edit__container">
+            <h3 className="edit__name">Please enter a new Password</h3>
+            <input className="edit__name-input" type="password" onInput={event => setUser({...user, password: event.target.value})}/>
+            <button className="edit__name-button" type="submit" onClick={handleEdit}>Save</button>
+          </div>}
       
     </div>
   )
