@@ -2,7 +2,7 @@ import "./NewUserForm.scss";
 
 
 
-const NewUserForm = ({onSubmit, profile, setProfile}) => {
+const NewUserForm = ({onSubmit, profile, setProfile, match, setMatch}) => {
 
 
 
@@ -17,9 +17,10 @@ const NewUserForm = ({onSubmit, profile, setProfile}) => {
             <label className="registerForm__label" >Username:</label><br />
                 <input className="registerForm__input" required type="text" onInput={event => setProfile({...profile, userName: event.target.value}) }/><br />
             <label className="registerForm__label">Password:</label><br />
-                <input className="registerForm__input" required type="password"/><br />
+                <input className="registerForm__input" required type="password" onInput={event => setMatch({...match, password: event.target.value}) }/><br />
             <label className="registerForm__label">Confirm Password:</label><br />
-                <input className="registerForm__input" required type="password" onInput={event => setProfile({...profile, password: event.target.value}) }/><br />
+                <input className="registerForm__input" required type="password" onChange={event => setProfile({...profile, password: event.target.value}) } 
+                    onInput={event => setMatch({...match, confirmPassword: event.target.value}) }/><br />
             <input className="registerForm__submit" type="submit" value="Submit" />
         </form>
     </div>

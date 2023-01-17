@@ -5,6 +5,7 @@ import "./LandingPage.scss";
 import { useState, useEffect } from "react";
 import logo from "../../images/house.png"
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 
 //sign in
@@ -21,8 +22,13 @@ const LandingPage = ({profile, setProfile}) => {
     password: "Password!",
     image: ""
   });
+  const [ match, setMatch] = useState({
+    password: "",
+    confirmPassword:""
+  })
   const navigate = useNavigate();
   const auth = getAuth();
+  const db = getDatabase();
 
 
   // useEffect(() => {
@@ -68,11 +74,13 @@ const handleSignIn = async (event) => {
 
 const handleNewUser = async (event) => {
   event.preventDefault();
-    console.log("new user");
+  if (match.password !== match.confirmPassword) {
+    alert("Passwords do no match")
+  } else {
 //get user info
-  const userEmail = newProfile.email;
-  const username = newProfile.userName;
-  const password = newProfile.password;
+    const userEmail = newProfile.email;
+    const username = newProfile.userName;
+    const password = newProfile.password;
   //const picture = newProfile.image;
     console.log(userEmail , username, password);
     try {
@@ -86,6 +94,10 @@ const handleNewUser = async (event) => {
       setErrorMessage(error.message)
       setShowErrorMessage(true)
     }
+  }
+    
+
+
 }
 
 
@@ -123,7 +135,7 @@ const toggleRegistrationForm = () => {
       {showRegistration && 
       <><h3>Join us!</h3><br />
       { showErrorMessage && <h4>{errorMessage}</h4>}
-      <NewUserForm profile={newProfile} setProfile={setNewProfile} onSubmit={handleNewUser}/></>}
+      <NewUserForm profile={newProfile} setProfile={setNewProfile} onSubmit={handleNewUser} match={match} setMatch={setMatch}/></>}
     </div>    
     </>
   )

@@ -8,16 +8,24 @@ import LandingPage from './containers/LandingPage/LandingPage';
 import Nav from './containers/Nav/Nav';
 import NewProperty from './containers/NewProperty/NewProperty';
 import pic from "./images/logo.svg";
+import { getDatabase, ref, set, onValue, DataSnapshot } from "firebase/database";
 import UserProfile from './containers/UserProfile/UserProfile';
 
 function App() {
+  const db = getDatabase();
 
   const [profile, setProfile] = useState({
     userName: "JoeTheMan",
     email: "joe@example.com",
     password: "Password!",
-    image: pic
+    image: pic,
   });
+
+  const propertiesRef = ref(db, "properties/");
+  onValue(propertiesRef, (DataSnapshot) => {
+    const data = DataSnapshot.val();
+    console.log(data);
+  })
 
   const properties = [{
     address: "",
@@ -37,7 +45,70 @@ function App() {
     rating: 0,
   }]
 
+  const writeDataToDb = () => {
+    const reference = ref(db, "properties/");
 
+    set(reference, 
+      [{
+      address: "",
+      images: {
+        main: "",
+        dining: "",
+        kitchen: "",
+        bathroom: "",
+        garden: "",
+        bedrooms: {
+          master: "",
+          second: "",
+          third: "",
+          fourth: ""
+        }
+    },
+      description: "",
+      price: 0,
+      rating: 0,
+    },
+    {
+      address: "",
+      images: {
+        main: "",
+        dining: "",
+        kitchen: "",
+        bathroom: "",
+        garden: "",
+        bedrooms: {
+          master: "",
+          second: "",
+          third: "",
+          fourth: ""
+        }
+      },
+      description: "",
+      price: 0,
+      rating: 0,
+    },
+    {
+      address: "",
+      images: {
+        main: "",
+        dining: "",
+        kitchen: "",
+        bathroom: "",
+        garden: "",
+        bedrooms: {
+          master: "",
+          second: "",
+          third: "",
+          fourth: ""
+        }
+      },
+      description: "",
+      price: 0,
+      rating: 0,
+    }]);
+  } 
+
+  //writeDataToDb();
 
   return (
     <Router>

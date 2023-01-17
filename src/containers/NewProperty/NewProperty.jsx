@@ -3,6 +3,7 @@ import RatingDropdown from '../../components/RatingDropdown/RatingDropdown';
 import { useState } from "react";
 import ImageTitleDropdown from "../../components/ImageTitleDropdown/ImageTitleDropdown";
 import UploadScreen from "../../components/UploadScreen/UploadScreen";
+import { getDatabase, ref, push } from "firebase/database";
 import Button from "../../components/Button/Button";
 
 
@@ -15,23 +16,25 @@ import Button from "../../components/Button/Button";
 
 
 const NewProperty = () => {
+  const db = getDatabase();
   const [showImageUpload, setShowImageUpload] = useState(false);
   const [property, setProperty] = useState(
     {
     address: "",
     images: {
-      main: null,
-      dining: null,
-      kitchen: null,
-      bathroom: null,
-      garden: null,
+      main: "",
+      dining: "",
+      kitchen: "",
+      bathroom: "",
+      garden: "",
       bedrooms: {
-        master: null,
-        second: null,
-        third: null,
-        fourth: null
+        master: "",
+        second: "",
+        third: "",
+        fourth: ""
       }
     },
+    description: "",
     price: 0,
     rating: 0,
   })
@@ -67,8 +70,16 @@ const NewProperty = () => {
     setShowImageUpload(!showImageUpload)
   }
 
+  const pushNewProperty = (property) => {
+    const postPropRef = ref(db, "properties/");
+    push(postPropRef, property);
+  }
+
   const handleUpload = () => {
     console.log(property);
+    pushNewProperty(property);
+    
+
   }
 
   
