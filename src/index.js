@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
-import { getDatabase } from "firebase/database"
+import { getDatabase, ref, set } from "firebase/database";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -28,6 +28,17 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+// Auth and db references
+const auth = getAuth(app);
+const db = getDatabase(app);
+
+// onAuthStateChanged = (auth, user => {
+//   if (user != null) {
+//     console.log( user + "logged in");
+//   } else {
+//     console.log("no user");
+//   }
+// });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

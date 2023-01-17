@@ -22,7 +22,7 @@ const Nav = ({user}) => {
 
   return (
   <>
-  <IconContext.Provider value={{color:"white"}}>
+ 
     <div className="aside">
       <Link to="#" className="menu-bars">
         <FaIcons.FaBars onClick={showSidebar}/>
@@ -48,7 +48,7 @@ const Nav = ({user}) => {
         })}
       </ul>
     </nav>
-    </IconContext.Provider>
+   
   </>
   )
 }

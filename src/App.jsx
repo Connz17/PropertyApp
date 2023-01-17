@@ -60,7 +60,7 @@ function App() {
             element={"#"}>
           </Route>
           <Route path='/' 
-            element={<LandingPage/>}>
+            element={<LandingPage user={user} setUser={setUser}/>}>
           </Route>
         </Routes>      
       </div>
