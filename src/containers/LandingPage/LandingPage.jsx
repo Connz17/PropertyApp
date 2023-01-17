@@ -10,12 +10,12 @@ import { useNavigate } from "react-router-dom";
 //sign in
 //create new user
 
-const LandingPage = ({user, setUser}) => {
+const LandingPage = ({profile, setProfile}) => {
   const [showSignIn, setShowSignIn] = useState(false);
   const [showRegistration, setShowRegistration] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [newUser, setNewUser] = useState({
+  const [newProfile, setNewProfile] = useState({
     userName: "JoeTheMan",
     email: "joe@example.com",
     password: "Password!",
@@ -25,16 +25,35 @@ const LandingPage = ({user, setUser}) => {
   const auth = getAuth();
 
 
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, user => {
+  //     if (user) {
+  //       console.log("user logged in: ", user);
+  //     } else {
+  //       console.log("user logged out");
+  //     }
+  //   });
+    
+  //   }, []);
+
+onAuthStateChanged(auth, user => {
+  if (user) {
+    console.log("user logged in: ", user);
+  } else {
+    console.log("user logged out");
+  }
+});
+
+
 const handleSignIn = async (event) => {
   event.preventDefault();
     
-    const email = user.email;
-    const password = user.password;
+    const email = profile.email;
+    const password = profile.password;
     console.log(email, password);
 
     try {
       const userCredentials = await signInWithEmailAndPassword(auth, email, password);
-      console.log(userCredentials.user);
       //alert("Welcome!")
       //navigate("/home")
 
@@ -51,14 +70,13 @@ const handleNewUser = async (event) => {
   event.preventDefault();
     console.log("new user");
 //get user info
-  const userEmail = newUser.email;
-  const username = newUser.userName;
-  const password = newUser.password;
-  //const picture = newUser.image;
+  const userEmail = newProfile.email;
+  const username = newProfile.userName;
+  const password = newProfile.password;
+  //const picture = newProfile.image;
     console.log(userEmail , username, password);
     try {
       const userCredentials = await createUserWithEmailAndPassword(auth, userEmail, password);
-      console.log(userCredentials.user);
       //alert("Welcome!")
       //navigate("/home")
 
@@ -70,19 +88,6 @@ const handleNewUser = async (event) => {
     }
 }
 
-// const monitorLoggedStatus = async () => {
-//     onAuthStateChanged = (auth, user => {
-//     if (user != null) {
-//       console.log( "logged in");
-//     } else {
-//       console.log("no user");
-//     }
-//   });
-// }
-
-// useEffect(() => {
-//   monitorLoggedStatus();
-// }, []);
 
 const toggleEntryForm = () => {
   if (showRegistration == true) {
@@ -114,11 +119,11 @@ const toggleRegistrationForm = () => {
       {showSignIn && 
       <><h3>Welcome Back!</h3><br />
       { showErrorMessage && <h4>{errorMessage}</h4>}
-      <SignInForm onSubmit={handleSignIn} user={user} setUser={setUser}/></>}
+      <SignInForm onSubmit={handleSignIn} profile={profile} setProfile={setProfile}/></>}
       {showRegistration && 
       <><h3>Join us!</h3><br />
       { showErrorMessage && <h4>{errorMessage}</h4>}
-      <NewUserForm user={newUser} setUser={setNewUser} onSubmit={handleNewUser}/></>}
+      <NewUserForm profile={newProfile} setProfile={setNewProfile} onSubmit={handleNewUser}/></>}
     </div>    
     </>
   )

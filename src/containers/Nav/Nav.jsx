@@ -4,14 +4,13 @@ import * as AiIcons from 'react-icons/ai'
 import { useState } from "react";
 import { SidebarData } from "../../components/SidebarData/SidebarData";
 import { Link } from "react-router-dom";
-import { IconContext } from "react-icons";
 import UserDisplay from "../../components/UserDisplay/UserDisplay";
 
 
     //house the nav bar or aside
     // buttons include home, sign out, settings (edit user, edit display ui), search and filter, user avatar and name & add new property
 
-const Nav = ({user}) => {
+const Nav = ({profile}) => {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => {
@@ -27,7 +26,7 @@ const Nav = ({user}) => {
       <Link to="#" className="menu-bars">
         <FaIcons.FaBars onClick={showSidebar}/>
       </Link>
-      <UserDisplay user={user}/>
+      <UserDisplay profile={profile}/>
     </div>
     <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
       <ul className="nav-menu__items" onClick={showSidebar}>

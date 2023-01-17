@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { signOut, getAuth, onAuthStateChanged } from "firebase/auth";
 
 
-const UserDisplay = ({user}) => {
+const UserDisplay = ({profile}) => {
   const auth = getAuth();
   const [showLogoutButton, setShowLogoutButton] = useState(false);
 
@@ -13,25 +13,9 @@ const toggleButton = () => {
 }
 
 const logOut = async () => {
-  await signOut(auth).then(() => {
-    console.log("User has logged out");
-  });  
-    
+  await signOut(auth)    
   };
 
-//   const monitorLoggedStatus = async () => {
-//     onAuthStateChanged = (auth, user => {
-//     if (user != null) {
-//       console.log( "logged in");
-//     } else {
-//       console.log("no user");
-//     }
-//   });
-// }
-
-// useEffect(() => {
-//   monitorLoggedStatus();
-// }, []);
 
 
 
@@ -39,8 +23,8 @@ const logOut = async () => {
     <>
     <div className="user-info" onClick={toggleButton}>
       { !showLogoutButton && <> 
-        <img className="user-info__pic" src={user.image} alt="" />
-        <h6 className="user-info__name">{user.userName}</h6> 
+        <img className="user-info__pic" src={profile.image} alt="" />
+        <h6 className="user-info__name">{profile.userName}</h6> 
       </> }
 
       { showLogoutButton && <>

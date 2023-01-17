@@ -12,7 +12,7 @@ import UserProfile from './containers/UserProfile/UserProfile';
 
 function App() {
 
-  const [user, setUser] = useState({
+  const [profile, setProfile] = useState({
     userName: "JoeTheMan",
     email: "joe@example.com",
     password: "Password!",
@@ -42,7 +42,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Nav user={user}/>
+        <Nav profile={profile}/>
         <Routes>
           <Route path='/home'
             element={<HomePage properties={properties}/>}>
@@ -54,13 +54,13 @@ function App() {
             element={<NewProperty properties={properties}/>}>
           </Route>
           <Route path='/profile' 
-            element={<UserProfile user={user} setUser={setUser}/>}>
+            element={<UserProfile profile={profile} setProfile={setProfile}/>}>
           </Route>
           <Route path='#' 
             element={"#"}>
           </Route>
           <Route path='/' 
-            element={<LandingPage user={user} setUser={setUser}/>}>
+            element={<LandingPage profile={profile} setProfile={setProfile}/>}>
           </Route>
         </Routes>      
       </div>

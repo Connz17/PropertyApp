@@ -4,7 +4,7 @@ import { useState } from "react";
 
 
 
-const UserProfile = ({user, setUser}) => {
+const UserProfile = ({profile, setProfile}) => {
   const [showNameEdit, setShowNameEdit] = useState(false);
   const [showPictureEdit, setShowPictureEdit] = useState(false);
   const [showEmailEdit, setShowEmailEdit] = useState(false);
@@ -24,7 +24,7 @@ const UserProfile = ({user, setUser}) => {
   }
 
   const handleEdit = () => {
-    console.log(user);
+    console.log(profile);
     setShowNameEdit(false);
     setShowPictureEdit(false);
     setShowEmailEdit(false);
@@ -41,7 +41,7 @@ const UserProfile = ({user, setUser}) => {
       </div>
         { showNameEdit && <div className="edit__container">
             <h3 className="edit__name">Please enter a new Username</h3>
-            <input className="edit__name-input" type="text" onInput={event => setUser({...user, userName: event.target.value})}/>
+            <input className="edit__name-input" type="text" onInput={event => setProfile({...profile, userName: event.target.value})}/>
             <button className="edit__name-button" type="submit" onClick={handleEdit}>Save</button>
         </div> }
 
@@ -51,7 +51,7 @@ const UserProfile = ({user, setUser}) => {
       </div>
           { showPictureEdit && <div className="edit__container">
             <h3 className="edit__name">Please select a new Profile picture</h3>
-            <input className="edit__name-input" type="file" about="image/*" onInput={event => setUser({...user, image: URL.createObjectURL(event.target.files[0])})}/>
+            <input className="edit__name-input" type="file" about="image/*" onInput={event => setProfile({...profile, image: URL.createObjectURL(event.target.files[0])})}/>
             <button className="edit__name-button" type="submit" onClick={handleEdit}>Save</button>
           </div>}
 
@@ -61,7 +61,7 @@ const UserProfile = ({user, setUser}) => {
         </div>
           { showEmailEdit && <div className="edit__container">
             <h3 className="edit__name">Please enter a new Email Address</h3>
-            <input className="edit__name-input" type="email" onInput={event => setUser({...user, email: event.target.value})}/>
+            <input className="edit__name-input" type="email" onInput={event => setProfile({...profile, email: event.target.value})}/>
             <button className="edit__name-button" type="submit" onClick={handleEdit}>Save</button>
         </div> }
 
@@ -71,7 +71,7 @@ const UserProfile = ({user, setUser}) => {
         </div>
           { showPasswordEdit && <div className="edit__container">
             <h3 className="edit__name">Please enter a new Password</h3>
-            <input className="edit__name-input" type="password" onInput={event => setUser({...user, password: event.target.value})}/>
+            <input className="edit__name-input" type="password" onInput={event => setProfile({...profile, password: event.target.value})}/>
             <button className="edit__name-button" type="submit" onClick={handleEdit}>Save</button>
           </div>}
       
