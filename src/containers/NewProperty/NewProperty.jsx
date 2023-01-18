@@ -1,9 +1,8 @@
 import "./NewProperty.scss";
 import RatingDropdown from '../../components/RatingDropdown/RatingDropdown';
 import { useState } from "react";
-import ImageTitleDropdown from "../../components/ImageTitleDropdown/ImageTitleDropdown";
 import UploadScreen from "../../components/UploadScreen/UploadScreen";
-import { getDatabase, ref, push } from "firebase/database";
+import { getDatabase, ref, push, set, child, onValue, } from "firebase/database";
 import Button from "../../components/Button/Button";
 
 
@@ -15,7 +14,7 @@ import Button from "../../components/Button/Button";
     // delete Object.assign(altProperty, {[tag]: altProperty.address}).address;
 
 
-const NewProperty = () => {
+const NewProperty = ({nextIndex}) => {
   const db = getDatabase();
   const [showImageUpload, setShowImageUpload] = useState(false);
   const [property, setProperty] = useState(
@@ -37,6 +36,7 @@ const NewProperty = () => {
     description: "",
     price: 0,
     rating: 0,
+    numOfBedrooms: 0,
   })
 
 
@@ -65,15 +65,20 @@ const NewProperty = () => {
   const cost = (e) => {
     setProperty({...property, price: e.target.value})
     }
+
+    const bedrooms = (e) => {
+      setProperty({...property, numOfBedrooms: e.target.value})
+      }
   
   const toggleUploadScreen = () => {
     setShowImageUpload(!showImageUpload)
   }
 
+
   const pushNewProperty = (property) => {
-    const postPropRef = ref(db, "properties/");
-    //console.log(postPropRef, property);
-    push(postPropRef, property);
+    const postPropRef = ref(db);
+    const newPostRef = child(postPropRef, "properties/" + nextIndex);
+    set(newPostRef, property)
   }
 
   const handleUpload = () => {
@@ -97,6 +102,8 @@ const NewProperty = () => {
           <input className="upload__input" type="text" id="" placeholder="38 Kingsway London SW92 7MQ" onChange={address}/> <br/>
         <label className="upload__label">Price:</label><br/>
           <input className="upload__input--digit" type="number" id="" placeholder="450000" onChange={cost}/> <br />
+        <label className="upload__label">Number of Bedrooms:</label><br/>
+          <input className="upload__input--digit" type="number" id="" placeholder="3" onChange={bedrooms}/> <br />
         <label className="upload__label">Property rating:</label>
           <RatingDropdown onChange={(value) => setProperty({...property, rating: value})  } placeHolder="Select..." options={options}/>
       </div><br />

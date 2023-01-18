@@ -6,7 +6,7 @@ import LandingPage from './containers/LandingPage/LandingPage';
 import Nav from './containers/Nav/Nav';
 import NewProperty from './containers/NewProperty/NewProperty';
 import pic from "./images/logo.svg";
-import { getDatabase, ref, set, onValue, DataSnapshot } from "firebase/database";
+import { getDatabase, ref, set, onValue, DataSnapshot,} from "firebase/database";
 import UserProfile from './containers/UserProfile/UserProfile';
 
 
@@ -35,6 +35,8 @@ function App() {
   }, []);
 
 
+  const nextIndex = properties.length
+
   const writeDataToDb = () => {
     const reference = ref(db, "properties/");
 
@@ -57,6 +59,7 @@ function App() {
       description: "",
       price: 0,
       rating: 0,
+      numOfBedrooms: 0,
     },
     {
       address: "",
@@ -76,6 +79,7 @@ function App() {
       description: "",
       price: 0,
       rating: 0,
+      numOfBedrooms: 0,
     },
     {
       address: "",
@@ -95,6 +99,7 @@ function App() {
       description: "",
       price: 0,
       rating: 0,
+      numOfBedrooms: 0,
     }]);
   } 
 
@@ -112,7 +117,7 @@ function App() {
             element={"#"}>
           </Route>
           <Route path='/upload' 
-            element={<NewProperty />}>
+            element={<NewProperty nextIndex={nextIndex} />}>
           </Route>
           <Route path='/profile' 
             element={<UserProfile profile={profile} setProfile={setProfile}/>}>
