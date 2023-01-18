@@ -1,9 +1,7 @@
 import './App.scss';
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HomePage from './containers/HomePage/HomePage';
-import SearchBox from './components/SearchBox/SearchBox';
-import SignInForm from './components/SignInForm/SignInForm';
 import LandingPage from './containers/LandingPage/LandingPage';
 import Nav from './containers/Nav/Nav';
 import NewProperty from './containers/NewProperty/NewProperty';
@@ -11,9 +9,10 @@ import pic from "./images/logo.svg";
 import { getDatabase, ref, set, onValue, DataSnapshot } from "firebase/database";
 import UserProfile from './containers/UserProfile/UserProfile';
 
+
 function App() {
   const db = getDatabase();
-
+  const [properties, setProperties] = useState([])
   const [profile, setProfile] = useState({
     userName: "JoeTheMan",
     email: "joe@example.com",
@@ -21,29 +20,20 @@ function App() {
     image: pic,
   });
 
-  const propertiesRef = ref(db, "properties/");
-  onValue(propertiesRef, (DataSnapshot) => {
-    const data = DataSnapshot.val();
+  const getProperties = () => {
+      const propertiesRef = ref(db, "properties/");
+  onValue(propertiesRef, (snapshot) => {
+    const data = snapshot.val();
     console.log(data);
+    setProperties(data)
   })
+  }
 
-  const properties = [{
-    address: "",
-    images: {
-      "main room": "",
-      "dining room": "",
-      kitchen: "",
-      bathroom: "",
-      garden: "",
-      bedrooms: {
-        "master bedroom": "",
-        "second bedroom": "",
-        "third bedroom": ""
-      }
-    },
-    price: 0,
-    rating: 0,
-  }]
+
+  useEffect(() => {
+    getProperties();
+  }, []);
+
 
   const writeDataToDb = () => {
     const reference = ref(db, "properties/");
@@ -122,7 +112,7 @@ function App() {
             element={"#"}>
           </Route>
           <Route path='/upload' 
-            element={<NewProperty properties={properties}/>}>
+            element={<NewProperty />}>
           </Route>
           <Route path='/profile' 
             element={<UserProfile profile={profile} setProfile={setProfile}/>}>

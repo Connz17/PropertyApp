@@ -72,6 +72,7 @@ const NewProperty = () => {
 
   const pushNewProperty = (property) => {
     const postPropRef = ref(db, "properties/");
+    //console.log(postPropRef, property);
     push(postPropRef, property);
   }
 
