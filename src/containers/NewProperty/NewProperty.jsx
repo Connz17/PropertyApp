@@ -2,7 +2,7 @@ import "./NewProperty.scss";
 import RatingDropdown from '../../components/RatingDropdown/RatingDropdown';
 import { useState } from "react";
 import UploadScreen from "../../components/UploadScreen/UploadScreen";
-import { getDatabase, ref, push, set, child, onValue, } from "firebase/database";
+import { getDatabase, ref, set, child } from "firebase/database";
 import Button from "../../components/Button/Button";
 
 
@@ -95,7 +95,7 @@ const NewProperty = ({nextIndex}) => {
 
 
   return (
-    <div>
+    <div className="upload__screen">
       <h2 className="heading">Upload a property</h2>
       <h4 className="heading">Please enter the properties information.</h4><br />
       <div className="upload__info"> 

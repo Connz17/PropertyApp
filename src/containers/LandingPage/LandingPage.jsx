@@ -2,10 +2,10 @@ import Button from "../../components/Button/Button";
 import NewUserForm from "../../components/NewUserForm/NewUserForm";
 import SignInForm from "../../components/SignInForm/SignInForm";
 import "./LandingPage.scss";
-import { useState, useEffect } from "react";
+import { useState, } from "react";
 import logo from "../../images/house.png"
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+//import { getDatabase, } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 
 //sign in
@@ -28,7 +28,7 @@ const LandingPage = ({profile, setProfile}) => {
   })
   const navigate = useNavigate();
   const auth = getAuth();
-  const db = getDatabase();
+ // const db = getDatabase();
 
 
   // useEffect(() => {
@@ -42,13 +42,7 @@ const LandingPage = ({profile, setProfile}) => {
     
   //   }, []);
 
-onAuthStateChanged(auth, user => {
-  if (user) {
-    console.log("user logged in: ", user);
-  } else {
-    console.log("user logged out");
-  }
-});
+
 
 
 const handleSignIn = async (event) => {
@@ -61,7 +55,7 @@ const handleSignIn = async (event) => {
     try {
       const userCredentials = await signInWithEmailAndPassword(auth, email, password);
       //alert("Welcome!")
-      //navigate("/home")
+      navigate("/home")
 
     } catch (error) {
       console.log(error);
@@ -86,7 +80,7 @@ const handleNewUser = async (event) => {
     try {
       const userCredentials = await createUserWithEmailAndPassword(auth, userEmail, password);
       //alert("Welcome!")
-      //navigate("/home")
+      navigate("/home")
 
     } catch (error) {
       console.log(error);
@@ -102,7 +96,7 @@ const handleNewUser = async (event) => {
 
 
 const toggleEntryForm = () => {
-  if (showRegistration == true) {
+  if (showRegistration === true) {
     setShowRegistration(!showRegistration)
   }
   setShowSignIn(!showSignIn);
@@ -110,7 +104,7 @@ const toggleEntryForm = () => {
 
 
 const toggleRegistrationForm = () => {
-  if (showSignIn == true) {
+  if (showSignIn === true) {
     setShowSignIn(!showSignIn)
   }
   setShowRegistration(!showRegistration);
@@ -118,8 +112,8 @@ const toggleRegistrationForm = () => {
 
 
   return (
-    <>
-    <div>
+    <div className="landing-page"> <br />
+    <div className="top-section">
       <img className="logo" src={logo} alt="Company logo" />
       <h2 className="title">Property Management App</h2>
     </div> <br />
@@ -137,7 +131,7 @@ const toggleRegistrationForm = () => {
       { showErrorMessage && <h4>{errorMessage}</h4>}
       <NewUserForm profile={newProfile} setProfile={setNewProfile} onSubmit={handleNewUser} match={match} setMatch={setMatch}/></>}
     </div>    
-    </>
+    </div>
   )
 }
 

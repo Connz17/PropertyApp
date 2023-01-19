@@ -6,12 +6,15 @@ import LandingPage from './containers/LandingPage/LandingPage';
 import Nav from './containers/Nav/Nav';
 import NewProperty from './containers/NewProperty/NewProperty';
 import pic from "./images/logo.svg";
-import { getDatabase, ref, set, onValue, DataSnapshot,} from "firebase/database";
+import { getDatabase, ref, onValue, } from "firebase/database";
+import {  getAuth, onAuthStateChanged,  } from "firebase/auth";
 import UserProfile from './containers/UserProfile/UserProfile';
 
 
 function App() {
   const db = getDatabase();
+  const auth = getAuth();
+
   const [properties, setProperties] = useState([])
   const [profile, setProfile] = useState({
     userName: "JoeTheMan",
@@ -20,14 +23,33 @@ function App() {
     image: pic,
   });
 
+  
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      //getProperties();
+
+    } else {
+
+    }
+  });
+
   const getProperties = () => {
       const propertiesRef = ref(db, "properties/");
-  onValue(propertiesRef, (snapshot) => {
+      onValue(propertiesRef, (snapshot) => {
     const data = snapshot.val();
     console.log(data);
     setProperties(data)
   })
   }
+
+  // const setUpProperties = (data) => {
+  //   setProperties(data);
+  // };
+
+  // const propertiesRef = ref(db, "properties/");
+  //     onValue(propertiesRef, (snapshot) => {
+  //       setUpProperties(snapshot.val)
+  //     })
 
 
   useEffect(() => {
@@ -37,73 +59,6 @@ function App() {
 
   const nextIndex = properties.length
 
-  const writeDataToDb = () => {
-    const reference = ref(db, "properties/");
-
-    set(reference, 
-      [{
-      address: "",
-      images: {
-        main: "",
-        dining: "",
-        kitchen: "",
-        bathroom: "",
-        garden: "",
-        bedrooms: {
-          master: "",
-          second: "",
-          third: "",
-          fourth: ""
-        }
-    },
-      description: "",
-      price: 0,
-      rating: 0,
-      numOfBedrooms: 0,
-    },
-    {
-      address: "",
-      images: {
-        main: "",
-        dining: "",
-        kitchen: "",
-        bathroom: "",
-        garden: "",
-        bedrooms: {
-          master: "",
-          second: "",
-          third: "",
-          fourth: ""
-        }
-      },
-      description: "",
-      price: 0,
-      rating: 0,
-      numOfBedrooms: 0,
-    },
-    {
-      address: "",
-      images: {
-        main: "",
-        dining: "",
-        kitchen: "",
-        bathroom: "",
-        garden: "",
-        bedrooms: {
-          master: "",
-          second: "",
-          third: "",
-          fourth: ""
-        }
-      },
-      description: "",
-      price: 0,
-      rating: 0,
-      numOfBedrooms: 0,
-    }]);
-  } 
-
-  //writeDataToDb();
 
   return (
     <Router>

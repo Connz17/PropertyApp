@@ -38,37 +38,37 @@ const UserProfile = ({profile, setProfile}) => {
       <div className="info__container">
         <h3 className="profile__name">Change Username</h3>
         <FaIcons.FaEdit className="edit__icon" onClick={toggleNameEdit}/>
-      </div>
+      </div><br />
         { showNameEdit && <div className="edit__container">
             <h3 className="edit__name">Please enter a new Username</h3>
             <input className="edit__name-input" type="text" onInput={event => setProfile({...profile, userName: event.target.value})}/>
             <button className="edit__name-button" type="submit" onClick={handleEdit}>Save</button>
-        </div> }
+        </div> } <br />
 
       <div className="info__container">
         <h3>Change Profile Picture</h3>
         <FaIcons.FaEdit className="edit__icon" onClick={togglePictureEdit}/>
-      </div>
+      </div><br />
           { showPictureEdit && <div className="edit__container">
             <h3 className="edit__name">Please select a new Profile picture</h3>
             <input className="edit__name-input" type="file" about="image/*" onInput={event => setProfile({...profile, image: URL.createObjectURL(event.target.files[0])})}/>
             <button className="edit__name-button" type="submit" onClick={handleEdit}>Save</button>
-          </div>}
+          </div>} <br />
 
         <div className="info__container">
           <h3 className="profile__email">Change Email Address</h3>
         <FaIcons.FaEdit className="edit__icon" onClick={toggleEmailEdit}/>
-        </div>
+        </div><br />
           { showEmailEdit && <div className="edit__container">
             <h3 className="edit__name">Please enter a new Email Address</h3>
             <input className="edit__name-input" type="email" onInput={event => setProfile({...profile, email: event.target.value})}/>
             <button className="edit__name-button" type="submit" onClick={handleEdit}>Save</button>
-        </div> }
+        </div> } <br />
 
         <div className="info__container">
           <h3 className="profile__password">Change Password</h3>
         <FaIcons.FaEdit className="edit__icon" onClick={togglePasswordEdit}/>
-        </div>
+        </div><br />
           { showPasswordEdit && <div className="edit__container">
             <h3 className="edit__name">Please enter a new Password</h3>
             <input className="edit__name-input" type="password" onInput={event => setProfile({...profile, password: event.target.value})}/>

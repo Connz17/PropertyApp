@@ -4,6 +4,9 @@
     align-items: center;
 }
 
+.profile__heading {
+    margin-bottom: 2rem;
+}
 
 
 .profile__image{
@@ -14,7 +17,7 @@
 .info__container{
     display: flex;
     align-items: center;
-    margin-bottom: 3rem;
+    
     
 }
 
@@ -28,6 +31,7 @@
     border-radius: 20px;
     text-align: center;
     padding: 2rem;
+    margin-bottom: 3rem;
 }
 
 .edit__name {
