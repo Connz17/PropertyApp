@@ -13,7 +13,7 @@ const HomePage = ({properties}) => {
   const propertiesJSX = properties.map((property, index) => {
     return(
       <div key={index}>
-        <PropertyCard address={property.address}  description={property.description} price={property.price} rating={property.rating} image={property.images.main} numberOfBedrooms={property.numOfBedrooms}/>
+        <PropertyCard address={property.address}  description={property.description} price={property.price} rating={property.rating} image={property.images.outside} numberOfBedrooms={property.numOfBedrooms}/>
       </div>
     )
   })

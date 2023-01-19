@@ -6,6 +6,11 @@ import ImageSelect from "../ImageSelect/ImageSelect";
 
 const UploadScreen = ({property, setProperty, toggleUpload}) => {
 
+  const imageSelectOutside = (e) =>{
+    const newProperty = {...property}; 
+    newProperty.images.outside = URL.createObjectURL(e.target.files[0])
+    setProperty(newProperty);
+  }
 
     const imageSelectMain = (e) =>{
         const newProperty = {...property}; 
@@ -36,9 +41,7 @@ const UploadScreen = ({property, setProperty, toggleUpload}) => {
         newProperty.images.garden = URL.createObjectURL(e.target.files[0])
         setProperty(newProperty);
       }
-    console.log(property.images);
-    
-      console.log(property);
+
     
       const masterBedroomSelect = (e) =>{
         const newProperty = {...property}; 
@@ -72,6 +75,7 @@ const UploadScreen = ({property, setProperty, toggleUpload}) => {
     <h4 className="upload-window__label">Upload property pictures</h4>
     <FaIcons.FaWindowClose className="upload-window__close" onClick={toggleUpload}/>
       <div className="upload-window__form">
+        <ImageSelect roomTitle={"Outside"} handleImageSelection={imageSelectOutside} roomImage={property.images.outside}/> <br />
         <ImageSelect roomTitle={"Main room"} handleImageSelection={imageSelectMain} roomImage={property.images.main}/> <br />
         <ImageSelect roomTitle={"Dining Room"} handleImageSelection={imageSelectDining} roomImage={property.images.dining}/> <br />
         <ImageSelect roomTitle={"Kitchen"} handleImageSelection={imageSelectKitchen} roomImage={property.images.kitchen}/> <br />

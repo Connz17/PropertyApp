@@ -2,29 +2,46 @@
     border: 1px solid orangered;
     width: 25rem;
     height: 30rem;
-
+    
 
     &__rating{
+        position: relative;
         text-align: center;
         border-radius: 50%;
         background-color: gold;
-        height: 2rem;
-        width: 2rem;
+        height: 2.5rem;
+        width: 2.5rem;
+        top: -287px;
+        font-size: 2rem;
+
+        
     }
 
     &__image{
-
+        display: block;
+        margin: auto;
+        width: auto;
+        height: 15rem;
     }
 
     &__locale{
-
+        text-align: center;
     }
 
     &__numbers{
-
+        display: flex;
+        justify-content: space-around;
     }
 
+    // &__section{
+    //     border: solid 1px peru;
+    //     height: 3rem;
+    // }
+
     &__info{
-      display: flex;
+        overflow: auto;
+        height: 5rem;
+        text-indent: 0.7rem;
+        margin: 0rem 0.1rem 0rem 0.7rem;
     }
 }

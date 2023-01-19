@@ -21,6 +21,7 @@ const NewProperty = ({nextIndex}) => {
     {
     address: "",
     images: {
+      outside: "",
       main: "",
       dining: "",
       kitchen: "",
