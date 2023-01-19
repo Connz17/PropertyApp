@@ -5,7 +5,6 @@ import HomePage from './containers/HomePage/HomePage';
 import LandingPage from './containers/LandingPage/LandingPage';
 import Nav from './containers/Nav/Nav';
 import NewProperty from './containers/NewProperty/NewProperty';
-import pic from "./images/logo.svg";
 import { getDatabase, ref, onValue, } from "firebase/database";
 import {  getAuth, onAuthStateChanged,  } from "firebase/auth";
 import UserProfile from './containers/UserProfile/UserProfile';
@@ -16,22 +15,19 @@ function App() {
   const auth = getAuth();
 
   const [properties, setProperties] = useState([])
-  const [profile, setProfile] = useState({
-    userName: "JoeTheMan",
-    email: "joe@example.com",
-    password: "Password!",
-    image: pic,
-  });
+  const [profile, setProfile] = useState({});
 
   
+  
   onAuthStateChanged(auth, user => {
+    
     if (user) {
-      //getProperties();
-
+    //getProperties();
     } else {
-
+      
     }
   });
+
 
   const getProperties = () => {
       const propertiesRef = ref(db, "properties/");
@@ -63,7 +59,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Nav profile={profile}/>
+        <Nav />
         <Routes>
           <Route path='/home'
             element={<HomePage properties={properties}/>}>
@@ -75,7 +71,7 @@ function App() {
             element={<NewProperty nextIndex={nextIndex} />}>
           </Route>
           <Route path='/profile' 
-            element={<UserProfile profile={profile} setProfile={setProfile}/>}>
+            element={<UserProfile />}>
           </Route>
           <Route path='#' 
             element={"#"}>

@@ -4,7 +4,7 @@ import SignInForm from "../../components/SignInForm/SignInForm";
 import "./LandingPage.scss";
 import { useState, } from "react";
 import logo from "../../images/house.png"
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 //import { getDatabase, } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 
@@ -17,10 +17,7 @@ const LandingPage = ({profile, setProfile}) => {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [newProfile, setNewProfile] = useState({
-    userName: "JoeTheMan",
-    email: "joe@example.com",
-    password: "Password!",
-    image: ""
+    
   });
   const [ match, setMatch] = useState({
     password: "",
@@ -28,20 +25,6 @@ const LandingPage = ({profile, setProfile}) => {
   })
   const navigate = useNavigate();
   const auth = getAuth();
- // const db = getDatabase();
-
-
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, user => {
-  //     if (user) {
-  //       console.log("user logged in: ", user);
-  //     } else {
-  //       console.log("user logged out");
-  //     }
-  //   });
-    
-  //   }, []);
-
 
 
 
@@ -75,11 +58,11 @@ const handleNewUser = async (event) => {
     const userEmail = newProfile.email;
     const username = newProfile.userName;
     const password = newProfile.password;
-  //const picture = newProfile.image;
     console.log(userEmail , username, password);
     try {
       const userCredentials = await createUserWithEmailAndPassword(auth, userEmail, password);
-      //alert("Welcome!")
+      alert("Welcome!")
+      
       navigate("/home")
 
     } catch (error) {
@@ -88,10 +71,15 @@ const handleNewUser = async (event) => {
       setErrorMessage(error.message)
       setShowErrorMessage(true)
     }
+    updateProfile(auth.currentUser, {
+        displayName: username
+      }).then(() => {
+      }).catch((error) => {
+        // An error occurred
+        alert(error);
+      });
   }
     
-
-
 }
 
 
