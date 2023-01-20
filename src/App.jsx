@@ -28,15 +28,19 @@ function App() {
     }
   });
 
-
   const getProperties = () => {
       const propertiesRef = ref(db, "properties/");
       onValue(propertiesRef, (snapshot) => {
     const data = snapshot.val();
-    console.log(data);
     setProperties(data)
+    console.log(properties);
   })
   }
+  useEffect(() => {
+    getProperties();
+  }, [properties.length]);
+
+
 
   // const setUpProperties = (data) => {
   //   setProperties(data);
@@ -48,9 +52,7 @@ function App() {
   //     })
 
 
-  useEffect(() => {
-    getProperties();
-  }, []);
+
 
 
   const nextIndex = properties.length

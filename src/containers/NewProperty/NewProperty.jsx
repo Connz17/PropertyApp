@@ -4,6 +4,7 @@ import { useState } from "react";
 import UploadScreen from "../../components/UploadScreen/UploadScreen";
 import { getDatabase, ref, set, child } from "firebase/database";
 import Button from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 
     //a page where a new property location can be added
@@ -16,6 +17,7 @@ import Button from "../../components/Button/Button";
 
 const NewProperty = ({nextIndex}) => {
   const db = getDatabase();
+  const navigate = useNavigate();
   const [showImageUpload, setShowImageUpload] = useState(false);
   const [property, setProperty] = useState(
     {
@@ -64,7 +66,7 @@ const NewProperty = ({nextIndex}) => {
     }
 
   const cost = (e) => {
-    setProperty({...property, price: e.target.value})
+    setProperty({...property, price: parseInt(e.target.value)})
     }
 
     const bedrooms = (e) => {
@@ -85,7 +87,7 @@ const NewProperty = ({nextIndex}) => {
   const handleUpload = () => {
     console.log(property);
     pushNewProperty(property);
-    
+    navigate("/home")
 
   }
 

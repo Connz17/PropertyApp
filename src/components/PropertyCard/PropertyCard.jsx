@@ -1,3 +1,4 @@
+import * as AiIcons from 'react-icons/ai'
 import "./PropertyCard.scss";
 
 
@@ -8,8 +9,10 @@ const PropertyCard = ({address, description, price, rating, numberOfBedrooms, im
   return (
     <div className="card"> <br />
       <img className="card__image" src={image} alt="house" /> 
-      <div className="card__rating">{rating}</div>
-      <h3 className="card__locale">{address}</h3>
+      <div className="card__rating">{rating} 
+      <AiIcons.AiFillStar className="card__star"/>
+      </div>
+      <h3 className="card__locale">{address} </h3>
       <div className="card__numbers">
         <h3 >Bedrooms: {numberOfBedrooms}</h3>
         <h3>£{price.toLocaleString()}</h3>

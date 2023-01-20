@@ -4,6 +4,7 @@ import { useState, } from "react";
 import { signOut, getAuth, onAuthStateChanged } from "firebase/auth";
 import pic from "../../images/logo.svg";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 const UserDisplay = () => {
@@ -13,20 +14,18 @@ const UserDisplay = () => {
   const [name, setName] = useState("User");
   const [displayPicture, setDisplayPicture] = useState(pic);
 
+
+  useEffect(() =>{
   onAuthStateChanged(auth, user => {
     if (user) {
-      //const user = auth.currentUser;
-    // if (user.photoURL?.length ) {
-    //   setDisplayPicture(user.photoURL) 
-    // }
-    // if (user.displayName?.length) {
-    //   setName(user.displayName)
-    // }
-
-    } else {
+    console.log(" signed in");
+    displaySetUp();
       
+    } else {
+      console.log(" no user ");
     }
   });
+  },[name, displayPicture ])
 
 const toggleButton = () => {
   setShowLogoutButton(!showLogoutButton);
@@ -38,6 +37,13 @@ const logOut = async () => {
   };
 
 
+  const displaySetUp = () => {
+      const profile = auth.currentUser;
+      setDisplayPicture(profile.photoURL) 
+      setName(profile.displayName)
+  }
+
+  
 
 
   return (

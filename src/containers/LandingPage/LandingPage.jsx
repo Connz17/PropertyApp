@@ -37,7 +37,7 @@ const handleSignIn = async (event) => {
 
     try {
       const userCredentials = await signInWithEmailAndPassword(auth, email, password);
-      //alert("Welcome!")
+      console.log(userCredentials);
       navigate("/home")
 
     } catch (error) {
@@ -61,8 +61,6 @@ const handleNewUser = async (event) => {
     console.log(userEmail , username, password);
     try {
       const userCredentials = await createUserWithEmailAndPassword(auth, userEmail, password);
-      alert("Welcome!")
-      
       navigate("/home")
 
     } catch (error) {
